@@ -5,9 +5,90 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+  text-transform: uppercase;
+  background-color: lightgray;
+  color: darkolivegreen;
+  
+  }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: darkslategrey;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  padding: 3%;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+button {
+  padding: 4%;
+  border-radius: 10px;
+  color: whitesmoke;
+  background-color: darkolivegreen;
+}
+button:hover {
+  transform: scale(1.1);
+}
+
+.user {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  border: 3px solid darkolivegreen;
+}
+
+.user-div {
+  margin: 1%;
+}
+
+h2 {
+  color: darkslategrey;
+}
+
+.user-div h2:hover {
+  transform: scale(1.1);
+}
+
+.followers {
+  margin-left: 2%;
+}
+
+.followers-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 2%;
+}
+
+.follower {
+  margin-bottom: 3%;
+}
+
+p{
+    color: darkolivegreen;
+}
+
+.follower-name:hover {
+  transform: scale(1.1);
+}
+
+a {
+  text-decoration: none;
 }

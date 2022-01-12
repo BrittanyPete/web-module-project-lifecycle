@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-
+import './index.css';
 import User from './components/User.js';
 import FollowerList from './components/FollowerList.js';
 
@@ -9,15 +9,15 @@ import FollowerList from './components/FollowerList.js';
 
 class App extends React.Component {
   state = {
-    currentUser: 'BrittanyPete',
+    handle: 'BrittanyPete',
     user: {},
     followersList: [],
   }
 
   componentDidMount() {
-    console.log('App is mounted');
+    // console.log('App is mounted');
     // //get user axios call
-    axios.get(`https://api.github.com/users/${this.state.currentUser}`)
+    axios.get(`https://api.github.com/users/${this.state.handle}`)
       .then(resp => {
         // console.log(resp.data)
         this.setState({
@@ -29,9 +29,9 @@ class App extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if(this.state.user !== prevState.user) {
-    axios.get(`https://api.github.com/users/${this.state.currentUser}/followers`)
+    axios.get(`https://api.github.com/users/${this.state.handle}/followers`)
       .then(resp => {
-        console.log(resp.data);
+        // console.log(resp.data);
         this.setState({
           ...this.state,
           followersList: resp.data
@@ -50,43 +50,32 @@ class App extends React.Component {
     });
   }
 
-  handleSearch = (evt) => {
+  handleSubmit = (evt) => {
     evt.preventDefault();
     // const handle = this.state.handle;
-
-    // // axios.get(`https://api.github.com/users/${handle}`)
-    // //   .then(resp => {
-    // //     // console.log('handleSearch resp: ', resp)
-    // //     this.setState({
-    // //       ...this.state,
-    // //       followersList: resp.data,
-    // //     })
-    // //   })
-    // //   .catch(err => {
-    // //     console.log(err);
-    // //   })
-    // axios.get(`https://api.github.com/users/wlongmire/followers`)
-    // .then(resp => {
-    //   console.log('handleSearch api:', resp);
-    //   // this.setState({
-    //   //   ...this.state,
-    //   //   followersList: resp.data
-    //   // })
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // })
+    axios.get(`https://api.github.com/users/${this.state.handle}`)
+      .then(resp => {
+        // console.log(resp.data)
+        this.setState({
+          ...this.state,
+          user: resp.data
+        });
+      });
   }
 
 
 
   render() {
-    console.log('App is rendering');
-    return(<div>
-      <div>
+    // console.log('App is rendering');
+    return(
+    <div className='container'>
+      <div className='header'>
         <h1>GitHub Info</h1>
-        <input onChange={this.handleChange} placeHolder='Github Handle' value={this.state.handle} />
-        <button onClick={this.handleSearch} >Search</button>
+        <form onSubmit={this.handleSubmit}>
+          <input onChange={this.handleChange} value={this.state.handle} />
+          <button>Search</button>
+        </form>
+
       </div>
       <div>
         <User user={this.state.user} />

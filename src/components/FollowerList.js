@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import Follower from './Follower.js';
 
 
@@ -8,11 +7,11 @@ class FollowerList extends React.Component {
 
     render() {
         return (
-          <div>
-            <div className="followers-list">
+          <div className='followers'>
+            <div>
               <h2>Followers:</h2>
             </div>
-            <div>
+            <div className="followers-list">
                 {
                     this.props.followersList.map(follower => {
                         return (
